@@ -1,16 +1,14 @@
 package util;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class State {
 	private int stateId;
 	private boolean isFinalState;
 	private HashMap<String, State> transitions;
 	
-	public State(int stateId, boolean isFinalState) {
+	public State(int stateId) {
 		this.stateId = stateId;
-		this.isFinalState = isFinalState;
 		transitions = new HashMap<>();
 	}
 	
@@ -20,10 +18,6 @@ public class State {
 	
 	public void setAsFinalState(boolean isFinalState) {
 		this.isFinalState = isFinalState;
-	}
-	
-	public Map<String, State> getTransitions() {
-		return this.transitions;
 	}
 	
 	public boolean isFinalState() {

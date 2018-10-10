@@ -12,7 +12,6 @@ public class Main {
 		Scanner keyboardInput = new Scanner(System.in);
 		System.out.print("Enter the number of states in the DFA: ");
 		int numberOfStates = keyboardInput.nextInt();
-		System.out.println();
 		System.out.println("Enter all symbols of your alphabet delineated by a period. (.)");
 		String userAlphabet = keyboardInput.next();
 		
@@ -26,7 +25,7 @@ public class Main {
 		// and ask where they go using each character of the alphabet. 
 		List<State> states = new ArrayList<State>();
 		for (int i = 0; i < numberOfStates; i++) {
-			State tmpState = new State(i, false);
+			State tmpState = new State(i);
 			states.add(tmpState);
 		}
 
@@ -40,7 +39,7 @@ public class Main {
 				System.out.print("\tq" + state.getStateId() + ", " + userAlphabetArr[i] + ": ");
 				int stateNumber = keyboardInput.nextInt();
 				state.addTransition(userAlphabetArr[i], states.get(stateNumber));
-				System.out.println();
+				//System.out.print("\n");
 			}
 		}
 		
@@ -51,13 +50,11 @@ public class Main {
 		String finalStates = keyboardInput.nextLine();
 		
 		if(!finalStates.contains(".")) {
-			
-			System.out.println(finalStates);
-			
 			states.get(Integer.valueOf(finalStates)).setAsFinalState(true);
 		} else {
 			String[] finalStatesArr = finalStates.split("\\.");
 			for (int i = 0; i < finalStatesArr.length; i++) {
+				// Set each state that got entered as a final state
 				states.get(Integer.valueOf(finalStatesArr[i])).setAsFinalState(true);
 			}
 		}
@@ -84,6 +81,7 @@ public class Main {
 			System.out.println("This string is not accepted.");
 		}
 		
+		// Print out all of the transitions used. 
 		for (String printout : statePrintout) {
 			System.out.println(printout);
 		}
